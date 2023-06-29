@@ -1,21 +1,38 @@
 pipeline {
-    agent any
+
+    any agent
 
     stages {
-        stage('Built') {
+
+        stage ('build') {
             steps {
-                echo 'Building..'    
+                echo ' build the application'
             }
+
         }
-        stage('Tested') {
+         stage ('test') {
             steps {
-                echo 'Testing..'
+                echo ' test application'
             }
+
         }
-        stage('Deployed') {
+         stage ('uat') {
             steps {
-                echo 'Deploying....'
+                echo ' tset script'
             }
-        }
-    }
+
+        }
+         stage ('staging') {
+            steps {
+                echo ' prepod'
+            }
+
+        }
+         stage ('production') {
+            steps {
+                echo ' approval for deployment'
+            }
+
+        }
+    }
 }
