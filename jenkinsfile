@@ -2,17 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Built') {
             steps {
                 echo 'Building..'
+                sh 'mvn package'
             }
         }
-        stage('Test') {
+        stage('Tested') {
             steps {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Deployed') {
             steps {
                 echo 'Deploying....'
             }
