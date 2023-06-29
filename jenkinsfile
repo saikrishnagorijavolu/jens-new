@@ -1,29 +1,21 @@
 pipeline {
-  agent any
-  
-  stages {
-    stage('Build') {
-      steps {
-        // Perform build steps here
-      }
-    }
-    
-    stage('Test') {
-      steps {
-        // Run tests here
-      }
-    }
-    
-    stage('Deploy') {
-      steps {
-        // Perform deployment steps here
-      }
-    }
-    
-    stage('Post-Deployment') {
-      steps {
-        // Run post-deployment tasks here
-      }
-    }
-  }
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
