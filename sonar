@@ -4,46 +4,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // Perform the build steps
+                // Perform the build steps for your Java or UI project
             }
         }
         
         stage('Test') {
             steps {
-                // Perform unit tests
+                // Perform the testing steps for your Java or UI project
             }
         }
         
-        stage('Deploy') {
+        stage('SonarScan') {
             steps {
-                parallel (
-                    'Deploy to Staging': {
-                        when {
-                            branch 'develop' // Only deploy on the develop branch
-                        }
-                        steps {
-                            // Deploy to staging environment
-                        }
-                    },
-                    'Deploy to Production': {
-                        when {
-                            branch 'master' // Only deploy on the master branch
-                        }
-                        steps {
-                            // Deploy to production environment
-                        }
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    def scannerCmd = "${scannerHome}/bin/sonar-scanner"
+
+                    withSonarQubeEnv('SonarCloud') {
+                        sh "${scannerCmd}"
                     }
-                )
-            }
-        }
-        
-        stage('Cleanup') {
-            steps {
-                try {
-                    // Perform cleanup steps
-                } catch (Exception e) {
-                    // Handle any exceptions that occur during cleanup
-                    // For example, send notifications or log errors
                 }
             }
         }
